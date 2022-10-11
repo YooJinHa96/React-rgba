@@ -8,17 +8,10 @@ function App() {
 
   const [hex, setHex] = useState("#fff");
   const SKETCH_REF = useRef();
-  const canvas = useRef();
-  const [rgba, setRgba] = useState({});
+
   const [canvasColor, setcanvasColor] = useState({ r: 255, g: 255, b: 255, a: 1 })
 
-  const hande_click = (() => {
-    setcanvasColor(rgba)
 
-  })
-  useEffect(() => {
-
-  })//`rgba(${test.R},${test.G},${test.B},${test.A})`//`${hex}`
   return (
     <div>
       <Sketch
@@ -27,21 +20,26 @@ function App() {
         color={hex}
         ref={SKETCH_REF}
         onChange={(color) => {
+          console.log(color.rgba)
           setHex(color.hex);
-          setRgba(color.rgba)
+          setcanvasColor(color.rgba)
         }}
       >
-        <button>CLICK</button>
+
       </Sketch>
-      <button onClick={hande_click}> click </button>
+
       <Canvas style={{
+
         witdh: '300px', height: '300px',
+
         backgroundColor: `rgba(${canvasColor.r},${canvasColor.g},${canvasColor.b},${canvasColor.a})`
-      }}> </Canvas>
+     
+     }}> 
+      </Canvas>
 
       <p> HEX : {hex}</p>
       <p> RGBA </p>
-      <p>R : {rgba.r}, G : {rgba.g}, B: {rgba.b}, A: {rgba.a}</p>
+      <p>R : {canvasColor.r}, G : {canvasColor.g}, B: {canvasColor.b}, A: {canvasColor.a}</p>
 
     </div>
 
